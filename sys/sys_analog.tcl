@@ -40,7 +40,7 @@ set_location_assignment PIN_AH21 -to VGA_B[5]
 set_location_assignment PIN_AH22 -to VGA_HS
 set_location_assignment PIN_AG24 -to VGA_VS
 
-set_location_assignment PIN_AH27 -to VGA_EN
+#set_location_assignment PIN_AH27 -to VGA_EN
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to VGA_EN
 
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_*
@@ -62,9 +62,9 @@ set_location_assignment PIN_Y15 -to LED_USER
 set_location_assignment PIN_AA15 -to LED_HDD
 set_location_assignment PIN_AG28 -to LED_POWER
 
-set_location_assignment PIN_AH24 -to BTN_USER
-set_location_assignment PIN_AG25 -to BTN_OSD
-set_location_assignment PIN_AG23 -to BTN_RESET
+#set_location_assignment PIN_AH24 -to BTN_USER
+#set_location_assignment PIN_AG25 -to BTN_OSD
+#set_location_assignment PIN_AG23 -to BTN_RESET
 
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED_*
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to BTN_*

@@ -11,10 +11,10 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_CONVST
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_SCK
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_SDI
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_SDO
-set_location_assignment PIN_U9 -to ADC_CONVST
-set_location_assignment PIN_V10 -to ADC_SCK
-set_location_assignment PIN_AC4 -to ADC_SDI
-set_location_assignment PIN_AD4 -to ADC_SDO
+#set_location_assignment PIN_U9 -to ADC_CONVST
+#set_location_assignment PIN_V10 -to ADC_SCK
+#set_location_assignment PIN_AC4 -to ADC_SDI
+#set_location_assignment PIN_AD4 -to ADC_SDO
 
 #============================================================
 # I2C LEDS/BUTTONS
@@ -42,7 +42,7 @@ set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to USER_IO
 #============================================================
 # SDIO_CD or SPDIF_OUT
 #============================================================
-set_location_assignment PIN_AH7 -to SDCD_SPDIF
+#set_location_assignment PIN_AH7 -to SDCD_SPDIF
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to SDCD_SPDIF
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SDCD_SPDIF
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to SDCD_SPDIF
@@ -81,10 +81,10 @@ set_location_assignment PIN_AG14 -to SDRAM_DQ[12]
 set_location_assignment PIN_AD5 -to SDRAM_DQ[13]
 set_location_assignment PIN_AF4 -to SDRAM_DQ[14]
 set_location_assignment PIN_AH3 -to SDRAM_DQ[15]
-set_location_assignment PIN_AG13 -to SDRAM_DQML
-set_location_assignment PIN_AF13 -to SDRAM_DQMH
+#set_location_assignment PIN_AG13 -to SDRAM_DQML
+#set_location_assignment PIN_AF13 -to SDRAM_DQMH
 set_location_assignment PIN_AD20 -to SDRAM_CLK
-set_location_assignment PIN_AG10 -to SDRAM_CKE
+#set_location_assignment PIN_AG10 -to SDRAM_CKE
 set_location_assignment PIN_AA19 -to SDRAM_nWE
 set_location_assignment PIN_AA18 -to SDRAM_nCAS
 set_location_assignment PIN_Y18 -to SDRAM_nCS
@@ -100,10 +100,10 @@ set_instance_assignment -name ALLOW_SYNCH_CTRL_USAGE OFF -to *|SDRAM_*
 #============================================================
 # SPI SD
 #============================================================
-set_location_assignment PIN_AE15 -to SD_SPI_CS
-set_location_assignment PIN_AH8  -to SD_SPI_MISO
-set_location_assignment PIN_AG8  -to SD_SPI_CLK
-set_location_assignment PIN_U13  -to SD_SPI_MOSI
+#set_location_assignment PIN_AE15 -to SD_SPI_CS
+#set_location_assignment PIN_AH8  -to SD_SPI_MISO
+#set_location_assignment PIN_AG8  -to SD_SPI_CLK
+#set_location_assignment PIN_U13  -to SD_SPI_MOSI
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to SD_SPI*
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_SPI*
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to SD_SPI*
@@ -174,8 +174,8 @@ set_location_assignment PIN_V13 -to HDMI_TX_VS
 #============================================================
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[1]
-set_location_assignment PIN_AH17 -to KEY[0]
-set_location_assignment PIN_AH16 -to KEY[1]
+#set_location_assignment PIN_AH17 -to KEY[0]
+#set_location_assignment PIN_AH16 -to KEY[1]
 
 #============================================================
 # LED
@@ -188,14 +188,14 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[4]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[5]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[6]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[7]
-set_location_assignment PIN_W15 -to LED[0]
-set_location_assignment PIN_AA24 -to LED[1]
-set_location_assignment PIN_V16 -to LED[2]
-set_location_assignment PIN_V15 -to LED[3]
-set_location_assignment PIN_AF26 -to LED[4]
-set_location_assignment PIN_AE26 -to LED[5]
-set_location_assignment PIN_Y16 -to LED[6]
-set_location_assignment PIN_AA23 -to LED[7]
+#set_location_assignment PIN_W15 -to LED[0]
+#set_location_assignment PIN_AA24 -to LED[1]
+#set_location_assignment PIN_V16 -to LED[2]
+#set_location_assignment PIN_V15 -to LED[3]
+#set_location_assignment PIN_AF26 -to LED[4]
+#set_location_assignment PIN_AE26 -to LED[5]
+#set_location_assignment PIN_Y16 -to LED[6]
+#set_location_assignment PIN_AA23 -to LED[7]
 
 #============================================================
 # SW
@@ -204,10 +204,10 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[2]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[3]
-set_location_assignment PIN_Y24 -to SW[0]
-set_location_assignment PIN_W24 -to SW[1]
-set_location_assignment PIN_W21 -to SW[2]
-set_location_assignment PIN_W20 -to SW[3]
+#set_location_assignment PIN_Y24 -to SW[0]
+#set_location_assignment PIN_W24 -to SW[1]
+#set_location_assignment PIN_W21 -to SW[2]
+#set_location_assignment PIN_W20 -to SW[3]
 
 set_instance_assignment -name HPS_LOCATION HPSINTERFACEPERIPHERALSPIMASTER_X52_Y72_N111 -entity sys_top -to spi
 set_instance_assignment -name HPS_LOCATION HPSINTERFACEPERIPHERALUART_X52_Y67_N111 -entity sys_top -to uart
