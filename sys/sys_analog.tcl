@@ -49,18 +49,18 @@ set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to VGA_*
 #============================================================
 # AUDIO
 #============================================================
-set_location_assignment PIN_AC24 -to AUDIO_L
-set_location_assignment PIN_AE25 -to AUDIO_R
-set_location_assignment PIN_AG26 -to AUDIO_SPDIF
+#set_location_assignment PIN_AC24 -to AUDIO_L
+#set_location_assignment PIN_AE25 -to AUDIO_R
+#set_location_assignment PIN_AG26 -to AUDIO_SPDIF
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUDIO_*
 set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to AUDIO_*
 
 #============================================================
 # I/O #1
 #============================================================
-set_location_assignment PIN_Y15 -to LED_USER
-set_location_assignment PIN_AA15 -to LED_HDD
-set_location_assignment PIN_AG28 -to LED_POWER
+#set_location_assignment PIN_Y15 -to LED_USER
+#set_location_assignment PIN_AA15 -to LED_HDD
+#set_location_assignment PIN_AG28 -to LED_POWER
 
 #set_location_assignment PIN_AH24 -to BTN_USER
 #set_location_assignment PIN_AG25 -to BTN_OSD
