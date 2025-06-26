@@ -121,7 +121,11 @@ module sys_top
 	output  [7:0] LED,
 
 	///////// USER IO ///////////
-	inout   [6:0] USER_IO
+	inout   [6:0] USER_IO,
+
+	///////// LOAN IO ////////////
+	output  [3:0] USER_LED,      // Loaned GPIO 48-51 for LEDs
+	input   [1:0] USER_BTN       // Loaned GPIO 52-53 for buttons
 );
 
 //////////////////////  Secondary SD  ///////////////////////////////////
@@ -1918,6 +1922,35 @@ always @(posedge clk) begin
 	else if(h_cnt == line_len) csync_hs <= 1;
 	
 	csync_vs <= vsync;
+end
+
+//////////////////////  LoanIO User Interface  /////////////////////////
+
+// User I/O control for loaned GPIO pins
+wire [1:0] btn_pressed;
+reg  [3:0] led_pattern;
+
+user_io user_io_inst
+(
+	.clk(clk_sys),
+	.reset_n(reset_n),
+	.user_led(USER_LED),
+	.user_btn(USER_BTN),
+	.btn_pressed(btn_pressed),
+	.led_pattern(led_pattern)
+);
+
+// Example: LED pattern control using buttons
+// Button 0: Rotate pattern left, Button 1: Rotate pattern right
+always_ff @(posedge clk_sys or negedge reset_n) begin
+	if (!reset_n) begin
+		led_pattern <= 4'b0001;  // Start with LED 0 on
+	end else begin
+		if (btn_pressed[0])
+			led_pattern <= {led_pattern[2:0], led_pattern[3]};  // Rotate left
+		if (btn_pressed[1])  
+			led_pattern <= {led_pattern[0], led_pattern[3:1]};  // Rotate right
+	end
 end
 
 endmodule
