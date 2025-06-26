@@ -502,7 +502,7 @@ always@(posedge clk_sys) begin
 `ifndef MISTER_DISABLE_YC
 			if(cmd == 'h41) begin
 				case(cnt[3:0])
-					 0: {subcarrier_mode,vsync_mode,pal_en,cvbs,yc_en} <= io_din[6:0];
+					 0: {subcarrier,pal_en,cvbs,yc_en} <= io_din[3:0];
 					 1: PhaseInc[15:0]         <= io_din;
 					 2: PhaseInc[31:16]        <= io_din;
 					 3: PhaseInc[39:32]        <= io_din[7:0];
@@ -1395,8 +1395,7 @@ csync csync_vga(clk_vid, vga_hs_osd, vga_vs_osd, vga_cs_osd);
 	reg         pal_en;
 	reg         yc_en;
 	reg         cvbs;
-	reg  [1:0]  subcarrier_mode;
-	reg  [1:0]  vsync_mode;
+	reg         subcarrier;
 	reg  [16:0] ColorBurst_Range;
 	reg  [39:0] PhaseInc;
 	wire [23:0] yc_o;
@@ -1426,7 +1425,8 @@ csync csync_vga(clk_vid, vga_hs_osd, vga_vs_osd, vga_cs_osd);
 	(
 		.clk(clk_vid),
 		.PHASE_INC(PhaseInc),
-		.subcarrier_mode(subcarrier_mode),
+		.subcarrier_enable(subcarrier),
+		.pal_en(pal_en),
 		.subcarrier_out(subcarrier_out)
 	);
 `endif
@@ -1485,9 +1485,7 @@ csync csync_vga(clk_vid, vga_hs_osd, vga_vs_osd, vga_cs_osd);
 	wire de1 = vgas_en ? vgas_de : vga_de;
 
 	`ifndef MISTER_DISABLE_YC
-	wire subcarrier_enable = (vsync_mode == 2'd2) && (subcarrier_mode != 2'd0);
-	wire vga_vs_final = subcarrier_enable ? subcarrier_out : 
-	                    (vsync_mode == 2'd0) ? 1'bZ :
+	wire vga_vs_final = subcarrier ? subcarrier_out : 
 	                    ((vgas_en ? (~vgas_vs ^ VS[12]) : VGA_DISABLE ? 1'd1 : ~vga_vs) | csync_en);
 	assign VGA_VS = av_dis ? 1'bZ : vga_vs_final;
 	`else

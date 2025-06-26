@@ -8,7 +8,8 @@ module subcarrier_gen
 (
 	input         clk,
 	input  [39:0] PHASE_INC,
-	input  [1:0]  subcarrier_mode, // 0=disabled, 1=NTSC, 2=PAL
+	input         subcarrier_enable, // 0=disabled, 1=enabled
+	input         pal_en,            // 0=NTSC, 1=PAL
 	output        subcarrier_out
 );
 
@@ -46,16 +47,19 @@ logic [39:0] phase_inc_adjusted;
 // PAL subcarrier is ~1.24x higher than NTSC (4.433619/3.579545)
 // Multiply by 1.24 ≈ multiply by 5/4 = multiply by 5, then divide by 4
 always_comb begin
-	case (subcarrier_mode)
-		2'd1: phase_inc_adjusted = PHASE_INC;                    // NTSC: use as-is
-		2'd2: phase_inc_adjusted = (PHASE_INC * 5) >> 2;         // PAL: multiply by 1.25
-		default: phase_inc_adjusted = 40'd0;                     // Disabled
-	endcase
+	if (subcarrier_enable) begin
+		if (pal_en)
+			phase_inc_adjusted = (PHASE_INC * 5) >> 2;           // PAL: multiply by 1.25
+		else
+			phase_inc_adjusted = PHASE_INC;                      // NTSC: use as-is
+	end else begin
+		phase_inc_adjusted = 40'd0;                              // Disabled
+	end
 end
 
 always_ff @(posedge clk) begin
 	// Phase accumulator
-	if (subcarrier_mode != 2'd0)
+	if (subcarrier_enable)
 		phase_accum <= phase_accum + phase_inc_adjusted;
 	else
 		phase_accum <= 40'd0;
@@ -68,6 +72,6 @@ always_ff @(posedge clk) begin
 end
 
 // Convert to digital output (MSB for square wave approximation)
-assign subcarrier_out = (subcarrier_mode != 2'd0) ? sine_value[10] : 1'b0;
+assign subcarrier_out = subcarrier_enable ? sine_value[10] : 1'b0;
 
 endmodule
