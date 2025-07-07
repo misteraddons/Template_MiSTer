@@ -160,15 +160,23 @@ wire [2:0] mcp_btn;
 wire       mcp_sdcd;
 wire       mcp_en;
 wire       mcp_mode;
-mcp23009 mcp23009
+wire [7:0] mcp_spare_out;
+wire [7:0] mcp_spare_in = 8'h00;  // Additional GPIO inputs for MCP23017 (can be wired as needed)
+
+mcp_io_expander mcp_io_expander
 (
 	.clk(FPGA_CLK2_50),
 
+	// MCP23009 compatible interface
 	.btn(mcp_btn),
 	.led({led_p, led_d, led_u}),
 	.flg_sd_cd(mcp_sdcd),
 	.flg_present(mcp_en),
 	.flg_mode(mcp_mode),
+
+	// Additional MCP23017 GPIO (unused if MCP23009 is detected)
+	.spare_out(mcp_spare_out),
+	.spare_in(mcp_spare_in),
 
 	.scl(IO_SCL),
 	.sda(IO_SDA)
